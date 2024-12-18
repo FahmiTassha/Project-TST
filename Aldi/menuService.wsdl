@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://localhost/TST/Project4/Aldi/menuService.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="menuService" targetNamespace="https://localhost/TST/Project4/Aldi/menuService.php">
+  <types>
+    <xsd:schema targetNamespace="https://localhost/TST/Project4/Aldi/menuService.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    </xsd:schema>
+  </types>
+  <portType name="menuServicePort">
+    <operation name="getMenu">
+      <input message="tns:getMenuIn"/>
+    </operation>
+    <operation name="verifyGuestId">
+      <input message="tns:verifyGuestIdIn"/>
+    </operation>
+    <operation name="orderItem">
+      <input message="tns:orderItemIn"/>
+    </operation>
+    <operation name="getHistories">
+      <documentation>Summary of getHistories</documentation>
+      <input message="tns:getHistoriesIn"/>
+      <output message="tns:getHistoriesOut"/>
+    </operation>
+  </portType>
+  <binding name="menuServiceBinding" type="tns:menuServicePort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getMenu">
+      <soap:operation soapAction="https://localhost/TST/Project4/Aldi/menuService.php#getMenu"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </output>
+    </operation>
+    <operation name="verifyGuestId">
+      <soap:operation soapAction="https://localhost/TST/Project4/Aldi/menuService.php#verifyGuestId"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </output>
+    </operation>
+    <operation name="orderItem">
+      <soap:operation soapAction="https://localhost/TST/Project4/Aldi/menuService.php#orderItem"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </output>
+    </operation>
+    <operation name="getHistories">
+      <soap:operation soapAction="https://localhost/TST/Project4/Aldi/menuService.php#getHistories"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://localhost/TST/Project4/Aldi/menuService.php"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="getMenuIn"/>
+  <message name="verifyGuestIdIn">
+    <part name="guestId" type="xsd:anyType"/>
+  </message>
+  <message name="orderItemIn">
+    <part name="itemId" type="xsd:anyType"/>
+    <part name="quantity" type="xsd:anyType"/>
+    <part name="paymentOption" type="xsd:anyType"/>
+  </message>
+  <message name="getHistoriesIn"/>
+  <message name="getHistoriesOut">
+    <part name="return" type="soap-enc:Array"/>
+  </message>
+  <service name="menuServiceService">
+    <port name="menuServicePort" binding="tns:menuServiceBinding">
+      <soap:address location="https://localhost/TST/Project4/Aldi/menuService.php"/>
+    </port>
+  </service>
+</definitions>

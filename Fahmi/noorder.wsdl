@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost/soap/Fahmi/server.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="NoOrder" targetNamespace="http://localhost/soap/Fahmi/server.php">
+  <types>
+    <xsd:schema targetNamespace="http://localhost/soap/Fahmi/server.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    </xsd:schema>
+  </types>
+  <portType name="NoOrderPort">
+    <operation name="getNoOrder">
+      <input message="tns:getNoOrderIn"/>
+      <output message="tns:getNoOrderOut"/>
+    </operation>
+  </portType>
+  <binding name="NoOrderBinding" type="tns:NoOrderPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getNoOrder">
+      <soap:operation soapAction="http://localhost/soap/Fahmi/server.php#getNoOrder"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/soap/Fahmi/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/soap/Fahmi/server.php"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="getNoOrderIn">
+    <part name="name" type="xsd:string"/>
+  </message>
+  <message name="getNoOrderOut">
+    <part name="return" type="xsd:anyType"/>
+  </message>
+  <service name="NoOrderService">
+    <port name="NoOrderPort" binding="tns:NoOrderBinding">
+      <soap:address location="http://localhost/soap/Fahmi/server.php"/>
+    </port>
+  </service>
+</definitions>

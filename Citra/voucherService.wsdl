@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://localhost/soap/Citra/voucherService"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://localhost/soap/Citra/voucherService">
+
+    <types>
+        <xsd:schema targetNamespace="http://localhost/soap/Citra/voucherService">
+            <xsd:element name="getHotelVoucherFromCafeTransactionRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="transactionAmount" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getHotelVoucherFromCafeTransactionResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="voucherCode" type="xsd:string"/>
+                        <xsd:element name="discount" type="xsd:int"/>
+                        <xsd:element name="description" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="getHotelVoucherFromCafeTransactionRequest">
+        <part name="parameters" element="tns:getHotelVoucherFromCafeTransactionRequest"/>
+    </message>
+    <message name="getHotelVoucherFromCafeTransactionResponse">
+        <part name="parameters" element="tns:getHotelVoucherFromCafeTransactionResponse"/>
+    </message>
+
+    <portType name="VoucherServicePortType">
+        <operation name="getHotelVoucherFromCafeTransaction">
+            <input message="tns:getHotelVoucherFromCafeTransactionRequest"/>
+            <output message="tns:getHotelVoucherFromCafeTransactionResponse"/>
+        </operation>
+    </portType>
+
+   <binding name="VoucherServiceBinding" type="tns:VoucherServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getHotelVoucherFromCafeTransaction">
+            <soap:operation soapAction="getHotelVoucherFromCafeTransaction"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+
+    <service name="VoucherService">
+        <port name="VoucherServicePort" binding="tns:VoucherServiceBinding">
+            <soap:address location="http://localhost/soap/Citra/server.php"/>
+        </port>
+    </service>
+</definitions>

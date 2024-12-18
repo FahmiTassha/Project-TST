@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Service</title>
+    <link rel="stylesheet" href="done.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PeseninKuy</h1>
+        <div class="form-section">
+            <h2>Form Check-in</h2>
+            <form id="checkinForm">
+                <input type="text" id="customer_id" name="customer_id" placeholder="Customer ID" required>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <input type="date" id="checkin_date" name="checkin_date" required>
+                <input type="number" id="stay_duration" name="stay_duration" placeholder="Stay Duration (days)" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h2>Voucher Information</h2>
+            <form id="voucherForm">
+                <input type="text" id="voucher_id" name="voucher_id" placeholder="Voucher ID" required>
+                <button type="submit">Check Voucher</button>
+            </form>
+        </div>
+
+        <div id="resultModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript.js"></script>
+</body>
+</html>

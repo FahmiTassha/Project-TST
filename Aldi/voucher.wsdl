@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost/TST/Project4/Aldi/server.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="Voucher" targetNamespace="http://localhost/TST/Project4/Aldi/server.php">
+  <types>
+    <xsd:schema targetNamespace="http://localhost/TST/Project4/Aldi/server.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    </xsd:schema>
+  </types>
+  <portType name="VoucherPort">
+    <operation name="getVoucher">
+      <input message="tns:getVoucherIn"/>
+      <output message="tns:getVoucherOut"/>
+    </operation>
+  </portType>
+  <binding name="VoucherBinding" type="tns:VoucherPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getVoucher">
+      <soap:operation soapAction="http://localhost/TST/Project4/Aldi/server.php#getVoucher"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/TST/Project4/Aldi/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/TST/Project4/Aldi/server.php"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="getVoucherIn">
+    <part name="age" type="xsd:int"/>
+  </message>
+  <message name="getVoucherOut">
+    <part name="return" type="xsd:anyType"/>
+  </message>
+  <service name="VoucherService">
+    <port name="VoucherPort" binding="tns:VoucherBinding">
+      <soap:address location="http://localhost/TST/Project4/Aldi/server.php"/>
+    </port>
+  </service>
+</definitions>

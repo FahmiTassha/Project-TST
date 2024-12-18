@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<definitions name="VoucherService"
+             targetNamespace="http://example.com/voucher"
+             xmlns:tns="http://example.com/voucher"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   
+   <message name="CheckinRequest">
+      <part name="customer_id" type="xsd:string"/>
+      <part name="name" type="xsd:string"/>
+      <part name="checkin_date" type="xsd:string"/>
+      <part name="stay_duration" type="xsd:int"/>
+   </message>
+
+   <message name="CheckinResponse">
+      <part name="result" type="xsd:string"/>
+   </message>
+
+   <message name="CheckVoucherRequest">
+      <part name="customer_id" type="xsd:string"/>
+   </message>
+
+   <message name="CheckVoucherResponse">
+      <part name="voucher_info" type="xsd:string"/>
+   </message>
+
+   <portType name="VoucherServicePortType">
+      <operation name="checkin">
+         <input message="tns:CheckinRequest"/>
+         <output message="tns:CheckinResponse"/>
+      </operation>
+      <operation name="checkVoucher">
+         <input message="tns:CheckVoucherRequest"/>
+         <output message="tns:CheckVoucherResponse"/>
+      </operation>
+   </portType>
+
+   <binding name="VoucherServiceBinding" type="tns:VoucherServicePortType">
+      <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name="checkin">
+         <soap:operation soapAction="http://example.com/voucher#checkin"/>
+         <input><soap:body use="literal"/></input>
+         <output><soap:body use="literal"/></output>
+      </operation>
+      <operation name="checkVoucher">
+         <soap:operation soapAction="http://example.com/voucher#checkVoucher"/>
+         <input><soap:body use="literal"/></input>
+         <output><soap:body use="literal"/></output>
+      </operation>
+   </binding>
+
+   <service name="VoucherService">
+      <port name="VoucherServicePort" binding="tns:VoucherServiceBinding">
+         <soap:address location="http://localhost/soap/voucher_service.php"/>
+      </port>
+   </service>
+</definitions>

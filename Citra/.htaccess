@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^api/voucher/?$ api.php [NC,L]
